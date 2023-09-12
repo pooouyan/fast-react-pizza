@@ -3,7 +3,9 @@ import Home from "./ui/Home";
 import Menu, { loader as menuLoader } from "./featchers/menu/Menu";
 import Error from "./ui/Error";
 import Cart from "./featchers/cart/Cart";
-import CreateOrder from "./featchers/order/CreateOrder";
+import CreateOrder, {
+  action as createOrderAction,
+} from "./featchers/order/CreateOrder";
 import Order, { loader as orderLoader } from "./featchers/order/Order";
 import AppLayout from "./ui/AppLayout";
 const router = createBrowserRouter([
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
       {
         path: "/order/new",
         element: <CreateOrder />,
+        action: createOrderAction,
       },
       {
         path: "/order/:orderId",
