@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import SearchOrder from "../featchers/order/SearchOrder";
+import Username from "../featchers/user/UserName";
 
 function Header() {
   return (
-    <header>
-      <Link to="/"> fast pizza react co.</Link>
+    <header className="flex items-center justify-between border-b border-stone-200 bg-yellow-500 px-4 py-3 ">
+      <Link to="/" className=" uppercase tracking-widest">
+        fast pizza react co.
+      </Link>
       <SearchOrder />
-      <p>pouyan</p>
+      <Username />
     </header>
   );
 }
