@@ -42,31 +42,40 @@ function CreateOrder() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <h2>Ready to order? Lets go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">Ready to order? Lets go!</h2>
 
       <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <input type="text" name="customer" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input type="text" name="customer" required className="input grow" />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" required className="input" />
-            {errorForm?.phone && <p>{errorForm.phone}</p>}
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input type="tel" name="phone" required className="input w-full" />
+            {errorForm?.phone && (
+              <p className="rounded-md bg-red-200 text-xs text-red-700">
+                {errorForm.phone}
+              </p>
+            )}
           </div>
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input
+              type="text"
+              name="address"
+              required
+              className="input w-full"
+            />
           </div>
         </div>
 
-        <div>
+        <div className="mb-12 flex items-center gap-6">
           <input
             className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-500 focus:ring-offset-2"
             type="checkbox"
@@ -75,12 +84,14 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label className="text-md" htmlFor="priority">
+            Want to yo give your order priority?
+          </label>
         </div>
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button disabled={isSubmitting}>
+          <Button disabled={isSubmitting} type="primary">
             {isSubmitting ? 'placing order...' : 'Order now'}
           </Button>
         </div>
@@ -101,8 +112,9 @@ export async function action({ request }) {
   if (!isValidPhone(order.phone)) errors.phone('Its wrong number');
   if (Object.keys(errors).length > 0) return errors;
 
-  const newOrder = await createOrder(order);
+  // const newOrder = await createOrder(order);
 
-  return redirect(`/order/${newOrder.id}`);
+  // return redirect(`/order/${newOrder.id}`);
+  return null;
 }
 export default CreateOrder;
